@@ -13,6 +13,12 @@ mkdir -p \
 dbus-uuidgen --ensure
 dbus-daemon --system --nofork &
 
+[[ -e /var/run/avahi-daemon/pid ]] && \
+    rm -f /var/run/avahi-daemon/pid
+
+[[ -e /run/avahi-daemon/pid ]] && \
+    rm -f /run/avahi-daemon/pid
+
 until [[ -e /var/run/dbus/system_bus_socket ]]; do
     sleep 1s
 done

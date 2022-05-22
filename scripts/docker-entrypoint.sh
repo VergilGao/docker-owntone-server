@@ -16,12 +16,17 @@ echo "---Setup audio devices permissions---"
 /opt/scripts/fix-audio-permission.sh
 
 echo "---Setup config file if not exits---"
+mkdir -p \
+    /config \
+    /owntone-pidfolder
+
 /opt/scripts/config.sh
 
 echo "---Taking ownership of data...---"
 chown -R root:${GID} /opt/scripts
 chmod -R 750 /opt/scripts
-chown -R ${UID}:${GID} /music /config
+chown -R ${UID}:${GID} /music /config /owntone-pidfolder
+chmod -R ${DATA_PERM} /music /config
 
 echo "---Starting owntone server...---"
 /opt/scripts/services.sh
@@ -34,7 +39,7 @@ term_handler() {
 trap 'kill ${!}; term_handler' SIGTERM
 
 /opt/scripts/watchdog.sh &
-gosu ${USER} /usr/sbin/owntone -f &
+gosu ${USER} /usr/sbin/owntone -f -P /owntone-pidfolder/owntone.pid &
 
 killpid="$!"
 while true
