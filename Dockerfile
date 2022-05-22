@@ -88,7 +88,8 @@ RUN apk add --update --no-cache \
 
 RUN mkdir -p /music /config && \
     useradd -s /sbin/nologin owntone && \
-    chown -R owntone /music /config
+    chown -R owntone /music /config && \
+    ulimit -n 4096
 
 COPY --from=buildstage /src/owntone-server/build/ /
 
