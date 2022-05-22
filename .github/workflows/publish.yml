@@ -50,7 +50,7 @@ jobs:
           ghcr.io/vergilgao/owntone-server:${{ env.MINOR_VERSION }}
           ghcr.io/vergilgao/owntone-server:${{ env.BUILD_VERSION }}
           ghcr.io/vergilgao/owntone-server:${{ env.TAG_VERSION }}
-          ghcr.io/vergilgao/owntone-server:lastest
+          ghcr.io/vergilgao/owntone-server:latest
         build-args: |
           VERSION=${{ env.BUILD_VERSION }}
           BUILD_DATE=${{ env.BUILD_DATE }}
