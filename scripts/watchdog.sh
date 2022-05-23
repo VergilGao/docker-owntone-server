@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # wait for avahi first startup
-until [[ $(ps aux | grep dbus-daemon | grep -v grep | wc -l) -gt 0 ]]; do
+until [[ $(ps aux | grep avahi-daemon | grep -v grep | wc -l) -gt 0 ]]; do
     sleep 1s
 done
 
